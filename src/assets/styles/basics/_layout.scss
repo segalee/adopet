@@ -44,9 +44,25 @@
   // display: grid;
   // grid-template-columns: $layoutPadding 1fr $layoutPadding;
 }
+.all-app {
+  height: 100vh;
+  width: 100vw;
+  width: 1380px;
+
+  // display: grid;
+  // grid-template-columns: $layoutPadding 1fr $layoutPadding;
+}
+
 .app-layout {
-  // padding-left: 150px;
-  // padding-right: 150px;
-  display: flex;
-  justify-content: space-evenly;
+  // display: flex;
+  // justify-content: space-evenly;
+  display: grid;
+  grid-template-columns: 20px 1fr 20px;
+}
+
+.app {
+  background-color: #f0efee;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 30px 1fr 30px;
 }
