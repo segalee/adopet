@@ -1,0 +1,23 @@
+* {
+  box-sizing: border-box;
+}
+
+// ::selection {
+
+// }
+
+html {
+  font-family: livvic-semi-bold;
+  line-height: 2;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+
+img {
+  width: 100%;
+}
