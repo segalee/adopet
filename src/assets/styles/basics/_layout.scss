@@ -22,7 +22,11 @@
     @include layoutGTC($break-wide);
   }
 }
-
+main {
+  margin-top: 80px;
+  background-color: rgb(245, 243, 243);
+  height: 100vh;
+}
 // Main Header Layout
 
 // div.product-container {
@@ -36,14 +40,6 @@
 //     @include aspect-ratio(1, 1);
 //   }
 // }
-.all-app {
-  height: 100vh;
-  width: 100vw;
-  width: 1380px;
-
-  // display: grid;
-  // grid-template-columns: $layoutPadding 1fr $layoutPadding;
-}
 .all-app {
   height: 100vh;
   width: 100vw;

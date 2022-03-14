@@ -1,19 +1,52 @@
-nav {
-  display: flex;
+.main-header {
   width: 100vw;
-  justify-content: space-around;
+  border-bottom: 1px solid rgb(241, 241, 241);
+  background-color: #fff;
   height: 80px;
+  z-index: 100;
   position: fixed;
   top: 0;
-  background-color: rgb(241, 241, 241);
-  align-items: center;
-  a {
-    text-decoration: none;
-    font-size: 22px;
-    color: #516862;
-    &.my-active {
-      color: #188b6e;
-      box-shadow: 0px 4px 0px 0px #188b6e;
+  nav {
+    display: flex;
+    width: 450px;
+    justify-content: space-around;
+    left: 20vw;
+    position: absolute;
+    align-items: center;
+    top: 0;
+    z-index: 50;
+    height: 80px;
+
+    a {
+      text-decoration: none;
+      font-size: 22px;
+      color: #38363f;
+      &.my-active {
+        color: #352e58;
+        box-shadow: 0px 4px 0px 0px #574c8a;
+      }
+    }
+  }
+  .logo-container {
+    position: absolute;
+    left: 10px;
+    top: 2px;
+    .adopet-logo {
+      height: 73px;
+      z-index: 2;
+      display: block;
+      // position: absolute;
+      margin-top: 4px;
+    }
+  }
+}
+@media (min-width: 640px) {
+  .main-header {
+    nav {
+      width: 800px;
+    }
+    .logo-container {
+      left: 60px;
     }
   }
 }

@@ -1,0 +1,33 @@
+.dogs {
+  overflow-y: auto;
+  height: 130vh;
+  .container {
+    div {
+      width: 100%;
+    }
+    img {
+      height: 285px;
+      object-fit: cover;
+    }
+    position: relative;
+    text-align: center;
+    // div,
+    // h2 {
+    //   left: 24%;
+    // }
+    .first-header-p {
+      position: absolute;
+      top: 8.5px;
+    }
+    .second-header-p {
+      position: absolute;
+      top: 50px;
+    }
+  }
+}
+.dogs-list-container {
+  grid-template-columns: repeat(auto-fit, minmax(260px, max-content));
+  justify-content: center;
+  grid-gap: 1rem;
+  display: grid;
+}

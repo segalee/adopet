@@ -1,6 +1,6 @@
 
 import { utilService } from "./utils.service.js";
-// import { v4 as uuid } from 'uuid'
+import { v4 as uuid } from 'uuid'
 import { httpService } from "./http.service.js";
 const axios = require("axios");
 
@@ -25,6 +25,8 @@ export const dogService = {
 
 async function query() {
   const dogs = await httpService.get('dog/');
+  console.log('dogs:', dogs);
+
   return dogs
 }
 

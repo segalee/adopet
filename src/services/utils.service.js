@@ -4,7 +4,8 @@ export const utilService = {
   getNiceRandomColor,
   createDeepCopy,
   timeSince,
-  getUserAcronyms
+  getUserAcronyms,
+  getRandIntInclusive
 }
 
 
@@ -38,12 +39,12 @@ function getNiceRandomColor() {
   let darkblue = "#292f4c";
 
   let niceColors = [darkblue, pink, blue, green, orange, red];
-  let drawnNum = _getRandomIntInclusive(0, niceColors.length - 1);
+  let drawnNum = getRandIntInclusive(0, niceColors.length - 1);
   let randColor = niceColors[drawnNum];
   return randColor;
 }
 
-function _getRandomIntInclusive(min, max) {
+function getRandIntInclusive(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive

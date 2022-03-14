@@ -1,14 +1,20 @@
 import { HomePage } from './pages/HomePage.jsx'
+import { Dogs } from './pages/Dogs.jsx'
+import { About } from './pages/About.jsx'
 
 
 const routes = [
     {
-        path: '/adopet',
+        path: '/',
         component: <HomePage />,
     },
     {
-        path: '/',
-        component: <HomePage />,
+        path: '/about',
+        component: <About />,
+    },
+    {
+        path: '/dogs',
+        component: <Dogs />,
     }
 ]
 
