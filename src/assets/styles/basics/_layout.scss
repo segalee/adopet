@@ -25,7 +25,8 @@
 main {
   margin-top: 80px;
   background-color: rgb(245, 243, 243);
-  height: 100vh;
+  min-height: 100vh;
+  padding-bottom: 160px;
 }
 // Main Header Layout
 
@@ -58,7 +59,11 @@ main {
 
 .app {
   background-color: #f0efee;
-  height: 100vh;
+  min-height: 100vh;
   display: grid;
   grid-template-columns: 30px 1fr 30px;
+}
+.wrapper {
+  min-height: 100%;
+  position: relative;
 }

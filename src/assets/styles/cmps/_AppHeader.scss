@@ -8,7 +8,7 @@
   top: 0;
   nav {
     display: flex;
-    width: 450px;
+    width: 300px;
     justify-content: space-around;
     left: 20vw;
     position: absolute;
@@ -43,10 +43,17 @@
 @media (min-width: 640px) {
   .main-header {
     nav {
-      width: 800px;
+      width: 530px;
     }
     .logo-container {
       left: 60px;
+    }
+  }
+}
+@media (min-width: 1000px) {
+  .main-header {
+    nav {
+      width: 900px;
     }
   }
 }

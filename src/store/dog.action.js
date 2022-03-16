@@ -4,11 +4,13 @@ import { utilService } from '../services/utils.service.js';
 
 // **DOG ACTIONS**
 
-export function loadDogs() {
+export function loadDogs(currFilterBy) {
+  console.log('currFilterBy:', currFilterBy);
+
   return async (dispatch) => {
     try {
-      const dogs = await dogService.query();
-      console.log('dogs:', dogs);
+      const dogs = await dogService.query(currFilterBy);
+      // console.log('dogs:', dogs);
 
       dispatch({
         type: "SET_DOGS",

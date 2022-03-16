@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import corgi from '../assets/imgs/corgi.jpg'
 import { loadDogs } from '../store/dog.action.js'
 import { getImgUrl } from '../services/cloudinary-service.js'
+import { Link } from 'react-router-dom';
 
 
 function calculateAge(birthday) {
@@ -27,8 +28,13 @@ function calculateAge(birthday) {
 
 
 export function _DogPreview({ dog }) {
-    console.log('dog.imgURL[0]:', dog.imgURL[0]);
     const [imgUrl, setimgUrl] = useState(null)
+    const aboutDog = <div>
+        <h2>{dog.name} the {dog.breed}</h2>
+        <p> Gender: {dog.gender}</p>
+        <p>{`Born at: ${dog.dob} (Age: ${dog.age})`}</p>
+    </div>
+    const [dogInfo, setDogInfo] = useState(aboutDog)
 
     // useEffect(() => {
     //     async function getImgURL() {
@@ -38,15 +44,12 @@ export function _DogPreview({ dog }) {
     //     }
     //     getImgURL()
     // }, [])
-    return <section className="dog-preview">
-        <img src={dog.imgURL[0]} alt=""></img>
-        <div>
-            <h2>{dog.name} the {dog.breed}</h2>
-            <p>{dog.description}</p>
-            <p>{`${dog.size} size (${dog.weight} KG)`}</p>
-            <p>Gender: {dog.sex}</p>
-            <p>{`Born at: ${dog.dob} (Age: ${dog.age})`}</p>
-        </div>
+
+
+    return <section className="dog-preview" onMouseEnter={() => setDogInfo(<p>{dog.description}</p>)} onMouseLeave={() => setDogInfo(aboutDog)}>
+        <img src={dog.imgURLs[0]} alt=""></img>
+        {dogInfo}
+        <Link to={`/details/${dog._id}`} className="clean-link">More Details</Link>
     </section>
 
 

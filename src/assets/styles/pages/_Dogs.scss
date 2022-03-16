@@ -1,6 +1,5 @@
 .dogs {
-  overflow-y: auto;
-  height: 130vh;
+  // height: 180vh;
   .container {
     div {
       width: 100%;
@@ -24,9 +23,29 @@
       top: 50px;
     }
   }
+  .btn-container {
+    text-align: center;
+    margin-top: 5px;
+    button {
+      height: 40px;
+      width: 110px;
+      border: none;
+      border-radius: 10px;
+      margin: 5px;
+      font-size: 15px;
+      font-family: 'b-regular';
+      color: #f0f0f0;
+      background-color: #55498d;
+      transition: 0.3s;
+      cursor: pointer;
+      &:hover {
+        background-color: #3b3361;
+      }
+    }
+  }
 }
 .dogs-list-container {
-  grid-template-columns: repeat(auto-fit, minmax(260px, max-content));
+  grid-template-columns: repeat(auto-fit, minmax(227px, max-content));
   justify-content: center;
   grid-gap: 1rem;
   display: grid;

@@ -13,10 +13,12 @@
 // Components
 @import 'cmps/AppHeader.scss';
 @import 'cmps/AppFooter.scss';
+@import 'cmps/AdoptForm.scss';
 @import 'cmps/DogPreview.scss';
 @import 'cmps/DogsFilter.scss';
 
 //Pages
 @import 'pages/HomePage.scss';
 @import 'pages/Dogs.scss';
+@import 'pages/DogDetails.scss';
 @import 'pages/About.scss';

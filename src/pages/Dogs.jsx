@@ -12,7 +12,6 @@ export function _Dogs({ dogs, loadDogs }) {
     }, [])
 
     useEffect(() => {
-        console.log('dogs:', dogs);
     }, [dogs])
 
     return <section className="dogs">
@@ -30,7 +29,9 @@ export function _Dogs({ dogs, loadDogs }) {
             <div className='dogs-list-container'>
                 <DogsList dogs={dogs} />
             </div>
-
+            <div className='btn-container'>
+                <button>Load more...</button>
+            </div>
         </section>
 
     </section>

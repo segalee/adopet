@@ -1,0 +1,41 @@
+.adopt-form-container {
+  width: 75%;
+  margin: auto;
+  margin-top: 250px;
+  input,
+  textarea {
+    width: 100%;
+    border: 1px solid #ccc;
+    background: #fff;
+    margin: 0 0 5px;
+    padding: 10px;
+    &:hover {
+      -webkit-transition: border-color 0.3s ease-in-out;
+      -moz-transition: border-color 0.3s ease-in-out;
+      transition: border-color 0.3s ease-in-out;
+      border: 1px solid #aaa;
+    }
+  }
+  textarea {
+    height: 100px;
+    max-width: 100%;
+    resize: none;
+  }
+  button {
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    background: #55498d;
+    color: #fff;
+    margin: 0 0 5px;
+    padding: 10px;
+    font-size: 15px;
+
+    &:hover {
+      background: #3b3361;
+      -webkit-transition: background 0.3s ease-in-out;
+      -moz-transition: background 0.3s ease-in-out;
+      transition: background-color 0.3s ease-in-out;
+    }
+  }
+}

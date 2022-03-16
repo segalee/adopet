@@ -1,10 +1,49 @@
 .filter {
   gap: 10%;
+  position: relative;
+  height: 400px;
+  width: 450px;
+  margin-top: -4px;
+  // margin: 0 auto;
   img {
-    width: 40%;
+    width: 100%;
+    transition: opacity 0.5s;
+    object-fit: cover;
+    .form-contaimer {
+      width: 40%;
+    }
+    margin-block-end: 20px;
   }
-  .form-contaimer {
-    width: 40%;
+  input {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    height: 40px;
+    width: 150px;
+    border: none;
+    border-radius: 10px;
+    margin: 5px;
+    font-size: 15px;
+    font-family: 'b-regular';
+    color: #472412;
   }
-  margin-block-end: 20px;
+  button {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    height: 40px;
+    width: 100px;
+    border: none;
+    border-radius: 10px;
+    margin: 5px;
+    font-size: 20px;
+    font-family: 'b-regular';
+    color: #f0f0f0;
+    background-color: #55498d;
+    transition: 0.3s;
+    cursor: pointer;
+    &:hover {
+      background-color: #3b3361;
+    }
+  }
 }

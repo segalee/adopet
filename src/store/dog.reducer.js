@@ -6,7 +6,7 @@ const initialState = {
   isDogNavOpen: false,
   currFilterBy: {
     breed: [],
-    sex: [],
+    gender: [],
     size: [],
   },
   search: "",
