@@ -5,7 +5,6 @@ import { utilService } from '../services/utils.service.js';
 // **DOG ACTIONS**
 
 export function loadDogs(currFilterBy) {
-  console.log('currFilterBy:', currFilterBy);
 
   return async (dispatch) => {
     try {
@@ -59,28 +58,7 @@ export function addDog(user) {
   }
 }
 
-export function updateDogTitle(dogToSave) {
-  const miniDog = { title: dogToSave.title, _id: dogToSave._id }
 
-  return async (dispatch) => {
-    try {
-      _setBackupDog(dispatch)
-      dispatch({
-        type: "SET_DOG",
-        dog: dogToSave,
-      })
-      dispatch({
-        type: "UPDATE_DOGS",
-        dog: miniDog,
-      })
-      await dogService.updateDogTitle(dogToSave)
-    } catch (err) {
-      _restoreDog(dispatch)
-      _setUserMsg(dispatch, 'Failed to update title, please check your internet connection')
-      console.log('Cannot update dog title:', err);
-    }
-  }
-}
 
 export function removeDog(dogId) {
   return async (dispatch) => {
@@ -153,108 +131,10 @@ export function saveDog(dogToSave) {
       });
       await dogService.saveDog(dogToSave)
     } catch (err) {
-      _restoreDog(dispatch)
       _setUserMsg(dispatch, 'Failed to save dog, please check your internet connection')
       console.log('Err in saving dog:', err);
     }
   }
-}
-
-
-
-// **GROUP ACTIONS**
-
-export function saveGroup(groupToSave, dogToSave) {
-
-  const groupIdx = dogToSave.groups.findIndex(
-    (group) => groupToSave.id === group.id
-  )
-  dogToSave.groups[groupIdx] = groupToSave
-
-  return saveDog(dogToSave)
-
-}
-
-export function addGroup(dogToSave, user) {
-  const newGroup = dogService.getNewGroup(user)
-  dogToSave.groups.unshift(newGroup);
-
-  return saveDog(dogToSave)
-  // return async (dispatch) => {
-  //   _setBackupDog(dispatch)
-  //   try {
-  //     dispatch({
-  //       type: "SET_DOG",
-  //       dog: dogToSave,
-  //     });
-  //     await dogService.saveDog(dogToSave)
-  //   } catch (err) {
-  //     _restoreDog(dispatch)
-  //     _setUserMsg(dispatch, 'Failed to save dog, please check your internet connection')
-  //     console.log('Err in saving dog:', err);
-  //   }
-  // }
-}
-
-export function deleteGroup(groupId, dogToSave) {
-  const filteredGroups = dogToSave.groups.filter((group) => {
-    return group.id !== groupId;
-  });
-  dogToSave.groups = filteredGroups
-
-  return saveDog(dogToSave)
-}
-
-
-// **TASK ACTIONS**
-
-export function deleteTask(taskId, groupId, dogToSave) {
-  const groupIdx = dogToSave.groups.findIndex((group) => groupId === group.id);
-  const filteredTasks = dogToSave.groups[groupIdx].tasks.filter((task) => {
-    return task.id !== taskId;
-  })
-  dogToSave.groups[groupIdx].tasks = filteredTasks;
-
-  return saveDog(dogToSave)
-
-}
-
-
-export function addTask(taskTitle, groupId, dogToSave, user, activity) {
-
-  activity.id = utilService.makeId()
-  activity.byMember = user
-  const newTask = dogService.addNewTask(taskTitle, activity)
-
-  const groupIdx = dogToSave.groups.findIndex((group) => groupId === group.id);
-  dogToSave.groups[groupIdx].tasks.push(newTask);
-  return saveDog(dogToSave)
-
-}
-
-export function saveTask(taskToSave, groupId, dogToSave, user, activity, comment) {
-
-
-
-  if (activity) {
-    activity.id = utilService.makeId()
-    activity.byMember = user
-    taskToSave.activities = [activity, ...taskToSave.activities.slice(0, 5)]
-  }
-  if (comment) {
-    comment.id = utilService.makeId()
-    comment.byMember = user
-    taskToSave.comments = [comment, ...taskToSave.comments.slice(0, 5)]
-  }
-
-  const groupIdx = dogToSave.groups.findIndex((group) => groupId === group.id);
-  const updatedtasks = dogToSave.groups[groupIdx].tasks.map((task) => {
-    return task.id === taskToSave.id ? taskToSave : task
-  });
-  dogToSave.groups[groupIdx].tasks = updatedtasks
-  return saveDog(dogToSave)
-
-
 }
 
 
@@ -266,11 +146,6 @@ function _setBackupDog(dispatch) {
   })
 }
 
-function _restoreDog(dispatch) {
-  dispatch({
-    type: "RESTORE_DOG"
-  })
-}
 
 function _setUserMsg(dispatch, txt) {
   dispatch({ type: 'SET_MSG', msg: { txt } })

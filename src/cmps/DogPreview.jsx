@@ -1,57 +1,67 @@
 import { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
-import corgi from '../assets/imgs/corgi.jpg'
-import { loadDogs } from '../store/dog.action.js'
-import { getImgUrl } from '../services/cloudinary-service.js'
+import { connect, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { RiDeleteBin5Line } from 'react-icons/ri'
+import { FiEdit } from 'react-icons/fi'
 
-
-function calculateAge(birthday) {
-    //milliseconds in a year 1000*24*60*60*365.24 = 31556736000; 
-    let today = new Date(),
-        //birthay has 'Dec 25 1998'
-        dob = new Date(birthday),
-        //difference in milliseconds
-        diff = today.getTime() - dob.getTime(),
-        //convert milliseconds into years
-        years = Math.floor(diff / 31556736000),
-        //1 day has 86400000 milliseconds
-        days_diff = Math.floor((diff % 31556736000) / 86400000),
-        //1 month has 30.4167 days
-        months = Math.floor(days_diff / 30.4167),
-        days = Math.floor(days_diff % 30.4167);
-
-    console.log(`${years} years ${months} months ${days} days`);
-    return `${years} years ${months} months ${days} days`;
-}
-
+import { getImgUrl } from '../services/cloudinary-service.js'
+import { loadDogs, removeDog } from '../store/dog.action.js'
+import { utilService } from '../services/utils.service.js'
+import corgi from '../assets/imgs/corgi.jpg'
+import { DeleteDogModal } from './DeleteDogModal.jsx';
 
 
 export function _DogPreview({ dog }) {
     const [imgUrl, setimgUrl] = useState(null)
     const aboutDog = <div>
         <h2>{dog.name} the {dog.breed}</h2>
+        <h5>{utilService.calculateAge(dog.dob)} Years old</h5>
         <p> Gender: {dog.gender}</p>
-        <p>{`Born at: ${dog.dob} (Age: ${dog.age})`}</p>
+        <p>{`Born at: ${dog.dob}`}</p>
     </div>
     const [dogInfo, setDogInfo] = useState(aboutDog)
+    const [isModalToDeleteShown, setIsModalToDeleteShown] = useState(false)
+    const [isDeletedModal, setIsDeletedModal] = useState(false)
+    const dispatch = useDispatch()
+    const onOpenDeleteModal = () => {
+        setIsModalToDeleteShown(true)
+    }
+    const onDeleteDogFromList = (id) => {
+        dispatch(removeDog(id))
+        setIsDeletedModal(true)
+        // const intervalId = setTimeout(() => {
+        //     setIsDeletedModal(true)
+        // }, 3000)
 
-    // useEffect(() => {
-    //     async function getImgURL() {
-    //         const imgReceived = await dog.imgURL[0]
-    //         console.log('imgReceived:', imgReceived);
-    //         setimgUrl(imgReceived)
-    //     }
-    //     getImgURL()
-    // }, [])
+    }
+
+    useEffect(() => {
+        const intervalId = setTimeout(() => {
+            setIsDeletedModal(false)
+        }, 3000)
+        return clearInterval(intervalId)
+    }, [isDeletedModal])
+
+    return <>
+        {isModalToDeleteShown && <div className='delete-modal flex column'>
+            <div>Are You Sure You Want to Delete?</div>
+            <div className='flex justify-space'><div className="opt delete" onClick={() => onDeleteDogFromList(dog._id)}>Delete</div><div className="opt cancel" onClick={() => setIsModalToDeleteShown(false)}>cancel</div></div>
+        </div>}
+        {isDeletedModal && <div className='isDeletedModal'>{dog.name} was deleted from the list!</div>}
+        <section className="dog-preview" onMouseEnter={() => setDogInfo(<p>{dog.description}</p>)} onMouseLeave={() => setDogInfo(aboutDog)}>
 
 
-    return <section className="dog-preview" onMouseEnter={() => setDogInfo(<p>{dog.description}</p>)} onMouseLeave={() => setDogInfo(aboutDog)}>
-        <img src={dog.imgURLs[0]} alt=""></img>
-        {dogInfo}
-        <Link to={`/details/${dog._id}`} className="clean-link">More Details</Link>
-    </section>
-
+            <section>
+                <div className='activities-container flex'>
+                    <RiDeleteBin5Line style={{ color: "#031212", "textShadow": "0 0 0 #fff" }} onClick={onOpenDeleteModal} />
+                    <Link to={`/edit/${dog._id}`}> <FiEdit style={{ color: "#031212", "textShadow": "0 0 0 #fff" }} /></Link>
+                </div>
+                <img src={dog.imgURLs[0]} alt=""></img>
+            </section>
+            {dogInfo}
+            <Link to={`/details/${dog._id}`} className="clean-link">More Details</Link>
+        </section>
+    </>
 
 }
 

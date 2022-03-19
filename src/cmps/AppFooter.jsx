@@ -1,12 +1,14 @@
 import { Link } from 'react-router-dom'
 import { AiFillGithub } from 'react-icons/ai'
 import { FaLinkedinIn, FaFacebookF } from 'react-icons/fa'
+import { FooterBtn } from './FooterBtn'
 export function AppFooter() {
+    const reactIconStyle = { color: '#fff', marginLeft: '-2px', marginTop: '3.5px' }
     return <section className="footer flex">
         <div className="footer-links flex">
-            <Link to="#" className='clean-link linkedin' style={{ backgroundColor: '#3576b8' }}><FaLinkedinIn size="20px" style={{ color: '#fff', marginLeft: '4px', marginTop: '4px' }} /></Link>
-            <Link to="#" className='clean-link git'><AiFillGithub size="20px" style={{ color: '#fff', marginLeft: '4px', marginTop: '4px' }} /></Link>
-            <Link to="#" className='clean-link fb'><FaFacebookF size="20px" style={{ color: '#fff', marginLeft: '4px', marginTop: '4px' }} /></Link>
+            <FooterBtn url="https://www.linkedin.com/in/segal-lee/" bgColor="#3576b8" reactIcon={<FaLinkedinIn size="20px" style={reactIconStyle} />} />
+            <FooterBtn url="https://github.com/segalee" bgColor="#64686c" reactIcon={<AiFillGithub size="20px" style={reactIconStyle} />} />
+            <FooterBtn url="https://facebook.com" bgColor="#537bbd" reactIcon={<FaFacebookF size="20px" style={reactIconStyle} />} />
         </div>
         <div><p> © All rights reserved</p></div>
     </section>

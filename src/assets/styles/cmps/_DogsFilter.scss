@@ -1,11 +1,13 @@
 .filter {
   gap: 10%;
   position: relative;
-  height: 400px;
   width: 450px;
   margin-top: -4px;
+  flex-direction: column;
+  margin: auto;
   // margin: 0 auto;
   img {
+    height: 300px;
     width: 100%;
     transition: opacity 0.5s;
     object-fit: cover;
@@ -45,5 +47,15 @@
     &:hover {
       background-color: #3b3361;
     }
+  }
+}
+
+@media (min-width: 790px) {
+  .filter {
+    flex-direction: row;
+    margin: -4px 0 0 0;
+  }
+  .form-contaimer {
+    text-align: center;
   }
 }

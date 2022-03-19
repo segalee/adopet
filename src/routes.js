@@ -2,6 +2,7 @@ import { HomePage } from './pages/HomePage.jsx'
 import { Dogs } from './pages/Dogs.jsx'
 import { About } from './pages/About.jsx'
 import { DogDetails } from './pages/DogDetails.jsx'
+import { DogEdit } from './pages/DogEdit.jsx'
 
 
 const routes = [
@@ -20,6 +21,10 @@ const routes = [
     {
         path: '/details/:dogId',
         component: <DogDetails />,
+    },
+    {
+        path: '/edit/:dogId',
+        component: <DogEdit />,
     }
 ]
 

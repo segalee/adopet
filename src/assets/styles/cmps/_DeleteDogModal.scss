@@ -1,0 +1,50 @@
+.delete-modal {
+  position: fixed;
+  top: 20%;
+  right: 35%;
+  width: 240px;
+  height: 85px;
+  text-align: center;
+  border: 1px solid #3e3e3e;
+  border-radius: 4px;
+  box-shadow: 0 0 3px 1px #5c5c5c;
+  background-color: #dfcfcf;
+  z-index: 500;
+  font-size: 13px;
+  padding-block-start: 15px;
+  font-family: 'b-bold';
+  gap: 7px;
+  .opt {
+    border: 1px solid black;
+    padding: 0 3px;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &.cancel {
+      background-color: #d6d6d6;
+      &:hover {
+        background-color: #a8a1a1;
+      }
+    }
+    &.delete {
+      background-color: #e0c0c0;
+      &:hover {
+        background-color: #bdb8b8;
+      }
+    }
+  }
+}
+
+.isDeletedModal {
+  position: fixed;
+  top: 20%;
+  right: 35%;
+  width: 240px;
+  height: 85px;
+  text-align: center;
+  border: 1px solid #3e3e3e;
+  border-radius: 4px;
+  box-shadow: 0 0 3px 1px #5c5c5c;
+  background-color: #cc8b8b;
+  z-index: 500;
+}

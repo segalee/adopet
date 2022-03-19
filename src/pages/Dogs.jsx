@@ -4,6 +4,7 @@ import corgi from '../assets/imgs/corgi.jpg'
 import { loadDogs } from '../store/dog.action.js'
 import { DogsList } from '../cmps/DogsList.jsx'
 import { DogsFilter } from '../cmps/DogsFilter.jsx'
+import { AddDog } from '../cmps/AddDog';
 export function _Dogs({ dogs, loadDogs }) {
 
     useEffect(() => {
@@ -15,6 +16,7 @@ export function _Dogs({ dogs, loadDogs }) {
     }, [dogs])
 
     return <section className="dogs">
+        {/* {console.log('dogs:', dogs)} */}
         <div className='container'>
             <img src={corgi} alt=""></img>
             <div className='first-header-p'><h2>What Are You Waiting For?</h2></div>
@@ -33,11 +35,9 @@ export function _Dogs({ dogs, loadDogs }) {
                 <button>Load more...</button>
             </div>
         </section>
-
+        <AddDog />
     </section>
 }
-
-
 
 
 function mapStateToProps({ dogModule }) {

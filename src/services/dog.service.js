@@ -13,7 +13,7 @@ export const dogService = {
   query,
   getById,
   saveDog,
-  // removeDogFromWishlist,
+  removeDog,
   // updateDogTitle,
   // getNewDog,
   // addNewTask,
@@ -45,6 +45,16 @@ async function saveDog(dogToSave) {
     const addedDog = await httpService.post('dog/', dogToSave);
 
     return addedDog
+  }
+}
+
+
+async function removeDog(dogId) {
+  try {
+    return httpService.delete(`dog/${dogId}`);
+  } catch (err) {
+    console.log(err, 'err')
+    throw new Error(err)
   }
 }
 

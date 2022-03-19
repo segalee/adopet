@@ -15,18 +15,11 @@
     right: 150px;
     // top: 40px;
     // direction: rtl;
-    a {
+    button {
       height: 28px;
       width: 28px;
-      &.fb {
-        background-color: #537bbd;
-      }
-      &.git {
-        background-color: #64686c;
-      }
-      &.linkedin {
-        background-color: #3576b8;
-      }
+      cursor: pointer;
+      border: none;
     }
   }
   p {

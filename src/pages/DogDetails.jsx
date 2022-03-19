@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs'
 import { RiArrowGoBackLine } from 'react-icons/ri'
 
+import { utilService } from '../services/utils.service.js'
 import { dogService } from '../services/dog.service';
 import { AdoptForm } from '../cmps/AdoptForm.jsx'
 export const DogDetails = () => {
@@ -13,7 +14,7 @@ export const DogDetails = () => {
         dogService.getById(dogId)
             .then(dog => {
                 setCurrDog(dog)
-                console.log('currDog:', currDog);
+                // console.log('currDog:', currDog);
             });
     }, [])
 
@@ -27,6 +28,7 @@ export const DogDetails = () => {
                     <section className='details-container flex'>
                         <div className='dog-details'>
                             <div className='flex'><div><p className='dog-desc-title'>name:</p></div><p>{currDog.name}</p></div>
+                            <div className='flex'><div><p className='dog-desc-title'>age:</p></div><p>{utilService.calculateAge(currDog.dob)} Years old</p></div>
                             <div className='flex'><div><p className='dog-desc-title'>breed:</p></div><p>{currDog.breed}</p></div>
                             <div className='flex'><div><p className='dog-desc-title'>size:</p></div><p>{currDog.size}</p></div>
                             <div className='flex'><div><p className='dog-desc-title'>Date of Birth:</p></div><p>{currDog.dob}</p></div>
