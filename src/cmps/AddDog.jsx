@@ -18,6 +18,7 @@ export const AddDog = () => {
     })
     const onFormSubmit = (ev) => {
         ev.preventDefault()
+        setisModalShown(false)
         console.log('ev.target:', ev.target);
         const dogToAddCopy = dogToAdd
         dispatch(saveDog(dogToAddCopy)).then(() => {
@@ -88,7 +89,7 @@ export const AddDog = () => {
                     }
                 }))}></input>
                 {/* dob */}
-                <button className="add-dog-btn" onClick={() => setisModalShown(false)}>Add</button>
+                <button className="add-dog-btn" >Add</button>
             </form>
         </section>}
     </section>
