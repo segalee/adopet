@@ -19,7 +19,6 @@ export function DogsFilter() {
         breed: "",
         gender: "",
         size: "",
-        age: "",
         txt: ""
     })
     const onHandleChange = (ev) => {
@@ -49,7 +48,7 @@ export function DogsFilter() {
     const onFormSubmit = (ev) => {
         ev.preventDefault()
         // dispatch(loadDogs(filterBy))
-        let filterArr = ['breed', 'age', 'size', 'gender']
+        let filterArr = ['breed', 'size', 'gender']
         for (let i = 0; i < 4; i++) {
             let filterVal = ev.target[i].value.toLowerCase()
             setfilterBy((prevFilter => {
@@ -65,17 +64,15 @@ export function DogsFilter() {
             breed: "",
             gender: "",
             size: "",
-            age: "",
             txt: ""
         })
     }
     useEffect(() => {
-        dispatch(loadDogs(filterBy))
+        dispatch(loadDogs(filterBy, 0))
     }, [filterBy])
 
     const onFilterChange = (ev) => {
         const val = ev.target.value.toLowerCase()
-        //     console.log('val:', val);
         const choice = ev.target.name
         console.log('choice:', choice);
         switch (choice) {
@@ -87,14 +84,6 @@ export function DogsFilter() {
                     }
                 }))
                 break
-            case 'age-choice':
-                setfilterBy((prevFilter => {
-                    return {
-                        ...prevFilter,
-                        age: val
-                    }
-                }))
-                break;
             case 'size-choice':
                 setfilterBy((prevFilter => {
                     return {
@@ -115,17 +104,7 @@ export function DogsFilter() {
                 break;
         }
 
-        //     // let filterArr = ['breed', 'age', 'size', 'gender']
 
-        //     // for (let i = 0; i < 4; i++) {
-        //     //     let filterVal = ev.target[i].value.toLowerCase()
-        //     //     setfilterBy((prevFilter => {
-        //     //         return {
-        //     //             ...prevFilter,
-        //     //             [filterArr[i]]: filterVal
-        //     //         }
-        //     //     }))
-        //     // }
     }
 
 
@@ -137,7 +116,7 @@ export function DogsFilter() {
             <img src={filterImg} alt="" style={{ opacity: `${(opc === 1 ? 1 : 0)}` }} ></img>
             <div className='form-container'>
                 <div>
-                    <input type="text" value={txtFilter} onChange={onHandleChange} placeholder="filter by dog's name"></input>
+                    <input type="text" value={txtFilter} onChange={onHandleChange} placeholder="Find Dog By Name"></input>
                 </div>
                 <div>
                     <form
@@ -159,18 +138,8 @@ export function DogsFilter() {
                                 return <option key={idx} value={`${breed}`}></option>
                             })}
                         </datalist>
-                        <input list="age" name="age-choice" placeholder="Age"
-                            value={filterBy.age}
-                            onChange={onFilterChange}
-                        />
-                        <datalist id="age" value={filterBy.age}
-                        // onChange={onAgeFilterChange}
-                        >
-                            <option value="Puppy" />
-                            <option value="Young" />
-                            <option value="Adult" />
-                            <option value="Old" />
-                        </datalist>
+
+
                         <input list="size" name="size-choice" placeholder="Size"
                             value={filterBy.size}
                             onChange={onFilterChange}

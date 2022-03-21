@@ -6,13 +6,23 @@ import { DogsList } from '../cmps/DogsList.jsx'
 import { DogsFilter } from '../cmps/DogsFilter.jsx'
 import { AddDog } from '../cmps/AddDog';
 export function _Dogs({ dogs, loadDogs }) {
+    const [skip, setSkip] = useState(0)
+    const [dogsToDisplay, setDogsToDisplay] = useState([])
+    useEffect(() => {
+        loadDogs({}, skip)
+        console.log('dogs:', dogs);
+
+        // setDogsToDisplay([...dogsToDisplay, ...dogsFromLoading])
+    }, [skip])
 
     useEffect(() => {
-        loadDogs()
+        // const dogsFromFetch = loadDogs({}, skip)
+        // var displayDogs = dogs.filter(function (obj) { return dogsToDisplay.indexOf(obj) === -1; })
+        // setDogsToDisplay([...displayDogs])
+        console.log('dogs:', dogs);
 
-    }, [])
-
-    useEffect(() => {
+        setDogsToDisplay([...dogs])
+        // console.log('dogsToDisplay:', dogsToDisplay);
     }, [dogs])
 
     return <section className="dogs">
@@ -28,12 +38,12 @@ export function _Dogs({ dogs, loadDogs }) {
             <div className='sort'>
 
             </div>
-            <div className='dogs-list-container'>
-                <DogsList dogs={dogs} />
-            </div>
-            <div className='btn-container'>
-                <button>Load more...</button>
-            </div>
+            {!!dogsToDisplay.length && <div className='dogs-list-container'>
+                <DogsList dogs={dogsToDisplay} />
+            </div>}
+            {dogs.length >= skip && <div className='btn-container'>
+                <button onClick={() => { setSkip(skip + 5) }}>Load more...</button>
+            </div>}
         </section>
         <AddDog />
     </section>

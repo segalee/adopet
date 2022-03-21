@@ -23,8 +23,8 @@ export const dogService = {
 
 // ****DOG - CRUD ***
 
-async function query(filterByTxt = null) {
-  const dogs = await httpService.get('dog/', filterByTxt);
+async function query(filterByTxt = null, skip = 0) {
+  const dogs = await httpService.get('dog/', { ...filterByTxt, skip });
 
   return dogs
 }

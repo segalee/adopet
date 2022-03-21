@@ -18,8 +18,23 @@ export function dogReducer(state = initialState, action) {
 
   switch (action.type) {
     case "SET_DOGS":
+
+      const mergedDogs = [...action.dogs, ...state.dogs]
+      console.log('mergedDogs:', mergedDogs);
+
+      let obj = {}
+
+      mergedDogs.forEach((dog) => {
+        obj[dog._id] = dog
+      })
+
+      const uniqueDogs = Object.values(obj)
+
+
+      console.log('uniqueDogs:', uniqueDogs);
+
       return {
-        ...state, dogs: [...action.dogs]
+        ...state, dogs: uniqueDogs
       };
     case "UPDATE_DOGS":
       return {
