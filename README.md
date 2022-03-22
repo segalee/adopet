@@ -1,1 +1,1 @@
-<!-- welcome to the my proj -->
+Using React hooks and Redux state management.
