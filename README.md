@@ -1,3 +1,3 @@
 Using React hooks and Redux state management.
 Watch the app in heroku
-https://adopet-app.herokuapp.com/
+https://app-adopet.herokuapp.com/#/dogs
